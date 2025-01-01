@@ -11,11 +11,15 @@ import { fetchBooks } from './api';
 export const searchBooks = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const books = yield fetchBooks();
-        const foundBook = books.find(book => book.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
-        return foundBook || null;
+        // Filtrera böcker som matchar titeln, författaren, eller året
+        const matchingBooks = books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.year.toString().includes(searchTerm) // För att kunna söka på år
+        );
+        return matchingBooks;
     }
     catch (error) {
-        console.error('error searching for books:', error);
-        return null;
+        console.error('Error searching for books:', error);
+        return [];
     }
 });

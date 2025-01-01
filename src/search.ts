@@ -1,15 +1,20 @@
 import { fetchBooks } from './api'
 import { Book } from './interface'
 
-export const searchBooks = async (searchTerm: string):Promise<Book | null> => {
+export const searchBooks = async (searchTerm: string): Promise<Book[]> => {
     try {
         const books = await fetchBooks()
 
-        const foundBook = books.find(book => book.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()))
+        // Filtrera böcker som matchar titeln, författaren, eller året
+        const matchingBooks = books.filter(book =>
+            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.year.toString().includes(searchTerm) // För att kunna söka på år
+        )
 
-        return foundBook || null
+        return matchingBooks
     } catch (error) {
-        console.error('error searching for books:', error)
-        return null
+        console.error('Error searching for books:', error)
+        return []
     }
-} 
+}
