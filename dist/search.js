@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { fetchBooks } from './api.js';
 import { openModal } from './modal.js';
-// Söka efter böcker
+// Funktion för att söka efter böcker
 export const searchBooks = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const books = yield fetchBooks();
-        // Filtrera böcker baserat på sökterm
+        // Filtrera böcker som matchar titeln, författaren, eller året
         const matchingBooks = books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
             book.year.toString().includes(searchTerm) // För att kunna söka på år
@@ -25,22 +25,19 @@ export const searchBooks = (searchTerm) => __awaiter(void 0, void 0, void 0, fun
         return [];
     }
 });
-// Visa resultat av sökningen i modalen
+// Funktion för att visa resultatet av sökningen i en lista
 export const showSearchResults = (books) => {
-    const resultsContainer = document.createElement('div');
-    resultsContainer.classList.add('search-results');
+    const searchResultsContainer = document.querySelector('.search-results-container');
+    searchResultsContainer.innerHTML = ''; // Rensa tidigare resultat
     books.forEach((book) => {
         const resultItem = document.createElement('div');
         resultItem.classList.add('search-result-item');
-        resultItem.innerText = book.title; // Visa bokens titel
+        resultItem.innerText = `${book.title} by ${book.author}`; // Visa bokens titel och författare
         resultItem.addEventListener('click', () => {
+            // När användaren klickar på ett resultat, öppna modalen med den boken
             const bookElement = document.querySelector(`#book${book.id}`);
             openModal(book, bookElement); // Skicka boken till modalen
         });
-        resultsContainer.appendChild(resultItem);
+        searchResultsContainer.appendChild(resultItem);
     });
-    // Lägg till resultatet till modalen
-    const modalContent = document.querySelector('.modal-content');
-    modalContent.innerHTML = ''; // Rensa eventuellt gammalt innehåll
-    modalContent.appendChild(resultsContainer);
 };

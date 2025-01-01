@@ -2,12 +2,12 @@ import { fetchBooks } from './api.js';
 import { Book } from './interface.js';
 import { openModal } from './modal.js';
 
-// Söka efter böcker
+// Funktion för att söka efter böcker
 export const searchBooks = async (searchTerm: string): Promise<Book[]> => {
     try {
         const books = await fetchBooks();
 
-        // Filtrera böcker baserat på sökterm
+        // Filtrera böcker som matchar titeln, författaren, eller året
         const matchingBooks = books.filter(book =>
             book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -21,25 +21,21 @@ export const searchBooks = async (searchTerm: string): Promise<Book[]> => {
     }
 };
 
-// Visa resultat av sökningen i modalen
+// Funktion för att visa resultatet av sökningen i en lista
 export const showSearchResults = (books: Book[]): void => {
-    const resultsContainer = document.createElement('div');
-    resultsContainer.classList.add('search-results');
+    const searchResultsContainer = document.querySelector('.search-results-container') as HTMLElement;
+    searchResultsContainer.innerHTML = '';  // Rensa tidigare resultat
 
     books.forEach((book) => {
         const resultItem = document.createElement('div');
         resultItem.classList.add('search-result-item');
-        resultItem.innerText = book.title;  // Visa bokens titel
+        resultItem.innerText = `${book.title} by ${book.author}`;  // Visa bokens titel och författare
         resultItem.addEventListener('click', () => {
+            // När användaren klickar på ett resultat, öppna modalen med den boken
             const bookElement = document.querySelector(`#book${book.id}`) as HTMLElement;
-            openModal(book, bookElement); // Skicka boken till modalen
+            openModal(book, bookElement);  // Skicka boken till modalen
         });
 
-        resultsContainer.appendChild(resultItem);
+        searchResultsContainer.appendChild(resultItem);
     });
-
-    // Lägg till resultatet till modalen
-    const modalContent = document.querySelector('.modal-content') as HTMLElement;
-    modalContent.innerHTML = '';  // Rensa eventuellt gammalt innehåll
-    modalContent.appendChild(resultsContainer);
 };

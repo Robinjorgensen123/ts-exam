@@ -1,7 +1,7 @@
-import { fetchBooks } from './api.js'
+import { fetchBooks } from './api.js';
 import { Book } from './interface';
 import { openModal } from './modal.js';
-import { searchBooks, showSearchResults } from './search.js';
+import { searchBooks } from './search.js';
 
 const modal = document.querySelector('.modal') as HTMLElement;
 const closeBtn = document.querySelector('#close-btn') as HTMLElement;
@@ -42,7 +42,7 @@ searchBtn.addEventListener('click', () => {
     if (searchTerm) {
         searchBooks(searchTerm).then((matchingBooks: Book[]) => {
             if (matchingBooks.length > 0) {
-                showSearchResults(matchingBooks); // Visa träffarna i en lista
+                openModalForSearchResult(matchingBooks[0]);  // Öppna modalen för den första matchande boken
             } else {
                 alert('No books found with that term!');
             }
@@ -52,8 +52,19 @@ searchBtn.addEventListener('click', () => {
     }
 });
 
-// Visa resultat av sökningen i modalen
-
+// Öppna modalen för den matchande boken
+const openModalForSearchResult = (book: Book): void => {
+    fetchBooks().then((books: Book[]) => {
+        const bookElement = document.querySelector(`#book${book.id}`) as HTMLElement;
+        if (bookElement) {
+            openModal(book, bookElement);  // Skicka boken till modalen
+        } else {
+            alert('Book not found!');
+        }
+    }).catch((error) => {
+        console.error('Error fetching books for modal:', error);
+    });
+};
 
 // Lägg till en event-lyssnare på modalen så att man stänger den genom att klicka på "Oh, I want to read"
 modal.addEventListener('click', (e) => {
