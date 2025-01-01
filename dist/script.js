@@ -1,7 +1,7 @@
 var _a;
-import { fetchBooks } from './api';
+import { fetchBooks } from './api.js';
 import { openModal } from './modal.js';
-import { searchBooks } from './search.js';
+import { searchBooks, showSearchResults } from './search.js';
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('#close-btn');
 const searchBtn = document.querySelector('#search-btn');
@@ -48,24 +48,6 @@ searchBtn.addEventListener('click', () => {
     }
 });
 // Visa resultat av sökningen i modalen
-const showSearchResults = (books) => {
-    const resultsContainer = document.createElement('div');
-    resultsContainer.classList.add('search-results');
-    books.forEach((book) => {
-        const resultItem = document.createElement('div');
-        resultItem.classList.add('search-result-item');
-        resultItem.innerText = book.title; // Visa bokens titel
-        resultItem.addEventListener('click', () => {
-            const bookElement = document.querySelector(`#book${book.id}`);
-            openModal(book, bookElement); // Skicka boken till modalen
-        });
-        resultsContainer.appendChild(resultItem);
-    });
-    // Lägg till resultatet till modalen
-    const modalContent = document.querySelector('.modal-content');
-    modalContent.innerHTML = ''; // Rensa eventuellt gammalt innehåll
-    modalContent.appendChild(resultsContainer);
-};
 // Lägg till en event-lyssnare på modalen så att man stänger den genom att klicka på "Oh, I want to read"
 modal.addEventListener('click', (e) => {
     if (e.target === closeBtn) {

@@ -1,4 +1,4 @@
-import { Book } from "./interface"
+import { Book } from "./interface.js"
 
 
 
