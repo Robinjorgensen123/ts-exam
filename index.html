@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/styles.css">
+    <script type="module" src="/dist/script.js" defer></script>
+</head>
+<body>
+    <input type="text" id="search-input" placeholder="Search for a book..." />
+    <button id="search-btn">Search</button>
+    <div class="modal">
+        <article id="info-modal">
+            <h2 id="title"></h2>
+            <p id="author"></p>
+            <p id="plot"></p>
+            <section class="info-wrapper">
+                <p id="audience"></p>
+                <p id="year"></p>
+                <p id="pages"></p>
+                <p id="publisher"></p>
+            </section>
+                <button id="close-btn">Oh, I want to read it!</button>
+        </article>
+        <div class="book-preview-modal"></div>
+    </div>
+    
+
+    <h1>8 Classic Children’s Books</h1>
+    <section class="book-container">
+        <article id="book6" class="book-yellow">
+            <span class="book-line"></span>
+            <h3>Madeline</h3>
+            <p>Ludwig Bemelmans</p>
+        </article>
+        <article id="book7" class="book-orange">
+            <span class="book-line"></span>
+            <h3>The Tale of <br>Peter Rabbit</h3>
+            <p>Beatrix Potter</p>
+        </article>
+        <article id="book8" class="book-red">
+            <span class="book-line"></span>
+            <h3>Charlotte's Web</h3>
+            <p>E. B. White</p>
+        </article>
+        <article id="book4" class="book-purple">
+            <span class="book-line"></span>
+            <h3>Harold and the<br>Purple Crayon</h3>
+            <p>Crockett Johnson</p>
+        </article>
+        <article id="book5" class="book-lightblue">
+            <span class="book-line"></span>
+            <h3>Where the Wild<br>Things Are</h3>
+            <p>Maurice Sendak</p>
+        </article>
+        <article id="book1" class="book-blue">
+            <span class="book-line"></span>
+            <h3>Goodnight Moon</h3>
+            <p>Margaret Wise Brown</p>
+        </article>
+        <article id="book3" class="book-lightgreen">
+            <span class="book-line"></span>
+            <h3>A Wrinkle in Time</h3>
+            <p>Madeleine L'Engle</p>
+        </article>
+        <article id="book2" class="book-green">
+            <span class="book-line"></span>
+            <h3>The Very Hungry<br>Caterpillar</h3>
+            <p>Eric Carle</p>
+        </article>
+    </section>
+
+</body>
+</html>
