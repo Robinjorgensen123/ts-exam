@@ -10,7 +10,7 @@ export const fetchBooks = async (): Promise<Book[]> => {
         }
 
         // Logga svaret för att verifiera att vi får rätt data
-        const responseData = await response.json();
+        const responseData:Book [] = await response.json();
         console.log("Response Data:", responseData);
 
         // Returnera böckerna

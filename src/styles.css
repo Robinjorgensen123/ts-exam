@@ -1,9 +1,11 @@
 * {
     box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-
+body {
+    background-color: palegoldenrod;
+}
 
 
 .book-container {
@@ -11,10 +13,11 @@
     grid-template-columns: repeat(4, 1fr);
     height: 100%;
     width: 100%;
-    gap: 10px;
-    justify-content: space-evenly;
-    padding-right: 10px;
-    padding-left: 10px;
+    max-width: 100%;
+    gap: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0 10px;
     
     
 }
@@ -60,12 +63,16 @@
     height: 35px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    padding: 0 10px;
+    margin-left: 10px;
+    margin-top: 20px;
 }
 
 #search-btn {
     height: 35px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    padding: 0 10px;
     
 }
 
@@ -195,10 +202,11 @@ grid-column: 1;
      grid-column: 1;
      grid-row: 1;
 
-     
-
 }
 
+h1 {
+    padding: 0 10px;
+}
 
 
 
