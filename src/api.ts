@@ -1,3 +1,5 @@
+// modal för api anropet
+
 import { Book } from './interface.js';
 
 export const fetchBooks = async (): Promise<Book[]> => {

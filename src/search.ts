@@ -1,3 +1,5 @@
+// modul för att söka efter böcker
+
 import { fetchBooks } from './api.js';
 import { Book } from './interface.js';
 import { openModal } from './modal.js';

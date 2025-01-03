@@ -1,8 +1,6 @@
 import { Book } from "./interface.js"
 
 
-
-
 export const openModal = (book: Book, bookElement:HTMLElement): void => {
     const modal = document.querySelector('.modal') as HTMLElement
     const bookPreviewModal = document.querySelector('.book-preview-modal') as HTMLElement

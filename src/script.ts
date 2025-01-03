@@ -1,3 +1,5 @@
+//modul för api anropet
+
 import { fetchBooks } from './api.js';
 import { Book } from './interface';
 import { openModal } from './modal.js';
